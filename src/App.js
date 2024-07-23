@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './Login';
+import Home from './Home';
+import GameInterface from './GameInterface';
+import { AuthProvider, useAuth } from './AuthContext';
+
+function PrivateRoute({ component: Component, ...rest }) {
+  const { currentUser } = useAuth();
+
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        return currentUser ? <Component {...props} /> : <Navigate to="/" />;
+      }}
+    />
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/game"
+            element={
+              <PrivateRoute>
+                <GameInterface />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
