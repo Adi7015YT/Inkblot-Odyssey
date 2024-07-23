@@ -45,7 +45,7 @@ This project is a psychological assessment application that utilizes the Rorscha
 
 ## Architecture
 
-![Data Flow Diagram](public\dataflow.jpg)
+![Data Flow Diagram](public/dataflow.jpg)
 
 ## Frontend Setup
 
