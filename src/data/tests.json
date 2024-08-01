@@ -1,0 +1,13 @@
+{
+    "rorschach": [
+      { "id": 1, "image": "/images/rorschach1.jpg" },
+      { "id": 2, "image": "/images/rorschach2.jpg" },
+      { "id": 3, "image": "/images/rorschach3.jpg" }
+    ],
+    "tat": [
+      { "id": 1, "image": "/images/tat1.jpg", "prompt": "What is happening in this picture?" },
+      { "id": 2, "image": "/images/tat2.jpg", "prompt": "What led up to this event?" },
+      { "id": 3, "image": "/images/tat3.jpg", "prompt": "What will happen next?" }
+    ]
+  }
+  

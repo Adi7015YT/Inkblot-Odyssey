@@ -1,49 +1,24 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './Login';
-import Home from './Home';
-import GameInterface from './GameInterface';
-import { AuthProvider, useAuth } from './AuthContext';
-
-function PrivateRoute({ component: Component, ...rest }) {
-  const { currentUser } = useAuth();
-
-  return (
-    <Route
-      {...rest}
-      render={(props) => {
-        return currentUser ? <Component {...props} /> : <Navigate to="/" />;
-      }}
-    />
-  );
-}
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Home from './components/Home';
+import Login from './components/Login';
+import RorschachTest from './components/RorschachTest';
+import TAT from './components/TAT';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <div className="App">
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route
-            path="/home"
-            element={
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/game"
-            element={
-              <PrivateRoute>
-                <GameInterface />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/rorschach-test" element={<RorschachTest />} />
+          <Route path="/tat" element={<TAT />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </div>
+    </Router>
   );
 }
 
